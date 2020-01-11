@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
@@ -33,7 +33,7 @@ namespace GoogleSearch
             Stream stream = response.GetResponseStream();
             StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string htmlText = reader.ReadToEnd();
-            // Console.WriteLine(htmlText);
+           // Console.WriteLine(htmlText);
             return htmlText;
 
         }
@@ -49,6 +49,13 @@ namespace GoogleSearch
                 Console.WriteLine(item.Key + "::" + item.Value);
             }
         }
+
+        public string GetTitle()
+        {
+            int startTitle = HTML_String.IndexOf("<title>")+7;
+            int endTitle = HTML_String.IndexOf("</title>");           
+            return HTML_String.Substring(startTitle,(endTitle - startTitle));
+        }      
 
     }
 }
